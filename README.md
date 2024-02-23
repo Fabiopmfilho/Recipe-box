@@ -2,6 +2,11 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+- prisma
+- supabase
+
+chadcn
+
 First, run the development server:
 
 ```bash
