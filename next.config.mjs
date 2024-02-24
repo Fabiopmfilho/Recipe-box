@@ -1,3 +1,5 @@
+// import { redirect } from 'next';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -6,5 +8,7 @@ const nextConfig = {
     }]
   }
 };
+
+
 
 export default nextConfig;

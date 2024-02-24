@@ -7,26 +7,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-
-export interface Ingredient {
-  id: string;
-  name: string;
-  quantity: number;
-  unit: string | null;
-}
-
-export interface Recipe {
-  id: string;
-  title: string;
-  image: string;
-  type_food: string;
-  number_peoples: number;
-  dificult: number;
-  how_make: string;
-  ingredients: Ingredient[];
-}
+import NewRecipeButton from "../components/create-recipe";
+import { Button } from "@/components/ui/button";
 
 export default async function Home() {
+
   const prisma = new PrismaClient();
   const recipes = await prisma.recipe.findMany({
     include: {
@@ -36,7 +21,7 @@ export default async function Home() {
 
   return (
     <main>
-      <div className="flex flex-col justify-center items-center mt-4 gap-5 rounded">
+      <div className="flex flex-col justify-center items-center mt-4 gap-5 rounded md:flex-row">
         {recipes.map((recipe: any) => (
           <Dialog key={recipe.id}>
             <DialogTrigger>
@@ -73,6 +58,21 @@ export default async function Home() {
           </Dialog>
         ))}
       </div>
+
+      {/* new */}
+      <Dialog>
+        <DialogTrigger>
+          <Button>+</Button>
+        </DialogTrigger>
+
+        <DialogContent>
+          <DialogHeader>
+            <h1 className="flex justify-center text-3xl mb-4">Nova receita</h1>
+          </DialogHeader>
+
+          <NewRecipeButton />
+        </DialogContent>
+      </Dialog>
     </main>
   );
 }
